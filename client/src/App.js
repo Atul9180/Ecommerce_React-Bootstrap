@@ -1,15 +1,10 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import Home from "./components/HomePage/Home";
 
 const App = () => {
   return (
     <>
-      <Button
-        onClick={() => alert("hey you'r react-bootstrap project is set.")}
-        variant="outline-success"
-      >
-        Close me
-      </Button>
+      <Home />
     </>
   );
 };
