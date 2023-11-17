@@ -1,23 +1,26 @@
 import { Button, Card } from "react-bootstrap";
 import "./Card.css";
+import { useContext } from "react";
+import { CartContext } from "../../context/DataContext";
 
-const CardComponent = () => {
+const CardComponent = ({ products }) => {
+  const { addToCart } = useContext(CartContext);
   return (
     <>
-      <Card className="itemCard">
-        <Card.Img
-          variant="top"
-          src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg"
-        />
-        <Card.Body>
-          <Card.Title>Acer SB220Q bi</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="primary">Add To Cart</Button>
-        </Card.Body>
-      </Card>
+      {products.map((item) => {
+        return (
+          <Card className="itemCard" key={item.id}>
+            <Card.Img variant="top" src={item.imageUrl} />
+            <Card.Body>
+              <Card.Title>{item.title}</Card.Title>
+              <Card.Text>{item.price}</Card.Text>
+              <Button variant="primary" onClick={() => addToCart(item)}>
+                Add To Cart
+              </Button>
+            </Card.Body>
+          </Card>
+        );
+      })}
     </>
   );
 };

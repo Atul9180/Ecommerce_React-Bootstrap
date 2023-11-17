@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./Header.css";
 import Nav from "react-bootstrap/Nav";
 import Badge from "react-bootstrap/Badge";
 import { MdShoppingCart } from "react-icons/md";
 import Cart from "../Cart/Cart";
+import { CartContext } from "../../context/DataContext";
 
 const HeaderCartButton = () => {
+  const { totalCartQuantity } = useContext(CartContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const handleCartButtonToggle = () => {
     setIsCartOpen(!isCartOpen);
@@ -16,7 +18,7 @@ const HeaderCartButton = () => {
         <div onClick={handleCartButtonToggle}>
           <MdShoppingCart className="cart" />
           <Badge pill bg="info" className="cartBadge">
-            {0}
+            {totalCartQuantity | 0}
           </Badge>
         </div>
       </Nav>

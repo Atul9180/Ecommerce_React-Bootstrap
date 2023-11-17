@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import CardComponent from "../UI/Card";
 import { Container, Row, Col } from "react-bootstrap";
+import productsArr from "../../data";
 
 const Products = () => {
+  const [products] = useState([...productsArr]);
+
   return (
     <Container className="mt-5 mb-4">
       <Row
@@ -12,31 +15,7 @@ const Products = () => {
         className="gy-5 g-md-5 justify-content-center mb-3"
       >
         <Col className="">
-          <CardComponent />
-        </Col>
-        <Col className="">
-          <CardComponent />
-        </Col>
-        <Col className="">
-          <CardComponent />
-        </Col>
-        <Col className="">
-          <CardComponent />
-        </Col>
-        <Col className="">
-          <CardComponent />
-        </Col>
-        <Col className="">
-          <CardComponent />
-        </Col>
-        <Col className="">
-          <CardComponent />
-        </Col>
-        <Col className="">
-          <CardComponent />
-        </Col>
-        <Col className="">
-          <CardComponent />
+          <CardComponent products={products} />
         </Col>
       </Row>
     </Container>
