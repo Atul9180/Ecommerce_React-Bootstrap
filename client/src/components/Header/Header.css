@@ -1,0 +1,45 @@
+.brandName {
+  color: white;
+  font-size: 25px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+
+.brandName:hover {
+  color: #ffc107;
+}
+
+.nav-link {
+  margin: 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.9s ease;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  color: aliceblue;
+  border-bottom: hidden 2px solid;
+}
+
+.nav-link:hover {
+  border-bottom: 2px solid rgb(95, 72, 3);
+  color: #ffc107;
+}
+
+.cart {
+  color: aliceblue;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.cart:hover {
+  color: #ffc107;
+}
+
+.cartBadge {
+  border-radius: 19px;
+  /* text-align: middle; */
+  font-size: small;
+  min-width: 33px;
+  padding: 4px;
+}

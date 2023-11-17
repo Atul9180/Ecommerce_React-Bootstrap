@@ -1,21 +1,22 @@
 import { Button, Card } from "react-bootstrap";
-import productsArr from "../../data";
 
 const CardComponent = () => {
   return (
     <>
-      console.log(productsArr);
-      {productsArr &&
-        productsArr.map((product) => (
-          <Card style={{ width: "18rem" }}>
-            <Card.Img variant="top" src={product.imageUrl} />
-            <Card.Body>
-              <Card.Title>{product.title}</Card.Title>
-              <Card.Text>"{product.description}"</Card.Text>
-              <Button variant="primary">Add To Cart</Button>
-            </Card.Body>
-          </Card>
-        ))}
+      <Card className="itemCard">
+        <Card.Img
+          variant="top"
+          src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg"
+        />
+        <Card.Body>
+          <Card.Title>Acer SB220Q bi</Card.Title>
+          <Card.Text>
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </Card.Text>
+          <Button variant="primary">Add To Cart</Button>
+        </Card.Body>
+      </Card>
     </>
   );
 };
