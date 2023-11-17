@@ -3,14 +3,12 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const Footer = () => {
   return (
-    <div className="bg-secondary mt-auto">
+    <div className="bg-black mt-auto">
       <Container className="p-3">
         <p className="text-center text-white">
-          Thank you for visiting this website
+          Thank you for visiting this website. Follow us on social media:
         </p>
-        <p className="text-center mt-5 text-white">
-          Follow us on social media:
-        </p>
+
         <Row>
           <Col className="text-center">
             <a href="/">Instagram</a>

@@ -1,4 +1,5 @@
 import { Button, Card } from "react-bootstrap";
+import "./Card.css";
 
 const CardComponent = () => {
   return (

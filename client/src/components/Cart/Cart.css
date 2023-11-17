@@ -1,0 +1,48 @@
+.CartCloseBtn,
+.proceedToPayBtn {
+  font-weight: bolder;
+}
+
+.CartCloseBtn:hover {
+  background: red;
+}
+
+.proceedToPayBtn:hover {
+  background: rgb(2, 76, 2);
+}
+
+.CartItemColHeading {
+  text-decoration: underline;
+  margin-bottom: 10px;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.cartItemRow {
+  font-size: medium;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.actionIcons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
+  cursor: pointer;
+}
+
+.plusMinusIcon {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: larger;
+  cursor: pointer;
+}
+
+.iconPlus:hover,
+.iconDelete:hover,
+.iconMinus:hover {
+  transform: scale(1.3); /* Increase size */
+  color: rgb(243, 64, 64); /* Change color */
+}

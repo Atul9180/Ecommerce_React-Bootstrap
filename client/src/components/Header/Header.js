@@ -1,7 +1,9 @@
-import React from "react";
 import "./Header.css";
-import { Navbar, Nav, Container, Badge } from "react-bootstrap";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import HeaderCartButton from "./HeaderCartButton";
+import HeaderNavLinks from "./HeaderNavLinks";
+import { FcShop } from "react-icons/fc";
 
 const Header = () => {
   return (
@@ -15,7 +17,8 @@ const Header = () => {
       <Container>
         {/* BrandLogo */}
         <Navbar.Brand href="/" className="brandName">
-          Apni Dukaan
+          <FcShop />
+          Mart
         </Navbar.Brand>
 
         {/* Navbar toggle for smaller screens */}
@@ -23,27 +26,11 @@ const Header = () => {
 
         {/* Collapse content (Links and Cart) */}
         <Navbar.Collapse id="navbar-toggle">
-          <Nav className="m-auto">
-            <Nav.Link href="/" className="nav-link">
-              HOME
-            </Nav.Link>
-            <Nav.Link href="/store" className="nav-link">
-              STORE
-            </Nav.Link>
-            <Nav.Link href="/about" className="nav-link">
-              ABOUT
-            </Nav.Link>
-          </Nav>
+          {/* Header Nav Links */}
+          <HeaderNavLinks />
 
-          {/* Cart at the right */}
-          <Nav className="ms-auto">
-            <div>
-              <AiOutlineShoppingCart className="cart" />
-              <Badge className="cartBadge" bg="danger">
-                {0}
-              </Badge>
-            </div>
-          </Nav>
+          {/* Cart Header Button Component */}
+          <HeaderCartButton />
         </Navbar.Collapse>
       </Container>
     </Navbar>
