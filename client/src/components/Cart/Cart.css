@@ -16,12 +16,19 @@
   margin-bottom: 10px;
   font-size: large;
   font-weight: bolder;
+  text-align: center;
 }
 
 .cartItemRow {
   font-size: medium;
   font-weight: bold;
   margin-bottom: 2px;
+}
+
+.cartItemImg {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 }
 
 .actionIcons {
@@ -37,6 +44,11 @@
   align-items: center;
   justify-content: space-around;
   font-size: larger;
+  cursor: pointer;
+}
+
+.iconDelete {
+  font-size: 20px;
   cursor: pointer;
 }
 

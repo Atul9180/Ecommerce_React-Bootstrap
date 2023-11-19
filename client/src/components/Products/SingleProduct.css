@@ -1,0 +1,12 @@
+.itemCard {
+  min-width: 19vw;
+  cursor: pointer;
+}
+
+.productContainer {
+  display: flex;
+  /* width: 100%; */
+  width: 98%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

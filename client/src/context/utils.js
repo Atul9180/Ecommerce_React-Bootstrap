@@ -1,4 +1,4 @@
-const addToCart = (state, action) => {
+const arddToCart = (state, action) => {
   const isProductExistsInCart = state.cartItems.findIndex(
     (item) => item.id === action.payload.id
   );
@@ -29,4 +29,8 @@ const getProductCartQuantity = (cartItems, id) => {
   return item ? item.quantity : 0;
 };
 
-export { addToCart, getProductCartQuantity };
+const addToCart = (item) => {
+  console.log({ item });
+};
+
+export { arddToCart, getProductCartQuantity, addToCart };

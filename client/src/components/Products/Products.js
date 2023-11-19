@@ -1,25 +1,39 @@
-import React, { useState } from "react";
-import CardComponent from "../UI/Card";
+import ProductCard from "./SingleProduct";
 import { Container, Row, Col } from "react-bootstrap";
-import productsArr from "../../data";
+import { CartState } from "../../context/Context";
+import ProductFilter from "./ProductFilter";
 
 const Products = () => {
-  const [products] = useState([...productsArr]);
+  const {
+    state: { products },
+  } = CartState();
 
   return (
-    <Container className="mt-5 mb-4">
-      <Row
-        xs={1}
-        md={2}
-        lg={4}
-        className="gy-5 g-md-5 justify-content-center mb-3"
-      >
-        <Col className="">
-          <CardComponent products={products} />
-        </Col>
-      </Row>
-    </Container>
+    <div className="w-100%">
+      <Container fluid className="d-flex mt-4 mb-4">
+        <ProductFilter />
+        <Row xs={1} md={2} lg={4} className="d-flex gy-4 gx-4  ">
+          {products.map((item) => (
+            <Col key={item.id + Math.random()}>
+              <ProductCard item={item} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </div>
   );
 };
 
 export default Products;
+
+//with filter in return....
+
+// <Container className="mt-4 mb-4">
+//   <Row xs={1} md={2} lg={4} className="d-flex gy-4 gx-5  ">
+//     {products.map((item) => (
+//       <Col key={item.id + Math.random()}>
+//         <ProductCard item={item} />
+//       </Col>
+//     ))}
+//   </Row>
+// </Container>;
