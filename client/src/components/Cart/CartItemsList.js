@@ -1,4 +1,4 @@
-import React from "react";
+// import React, { useContext } from "react";
 import "./Cart.css";
 import { Row, Col } from "react-bootstrap";
 import {
@@ -6,35 +6,35 @@ import {
   AiTwotoneMinusCircle,
   AiTwotoneDelete,
 } from "react-icons/ai";
+import { CartState } from "../../context/Context";
 
 const CartItemsList = () => {
+  const {
+    state: { cart },
+  } = CartState();
+
   return (
     <>
-      <Row className="cartItemRow">
-        <Col>item 2</Col>
-        <Col>[x5]</Col>
-        <Col>Rs.650</Col>
-        <Col className="actionIcons plusMinusIcon">
-          <AiTwotoneMinusCircle className="iconMinus" />
-          <AiTwotonePlusCircle className="iconPlus" />
-        </Col>
-        <Col className="actionIcons">
-          <AiTwotoneDelete className="iconDelete" />
-        </Col>
-      </Row>
-
-      <Row className="cartItemRow">
-        <Col>item 2</Col>
-        <Col>[x1]</Col>
-        <Col>Rs.650</Col>
-        <Col className="actionIcons plusMinusIcon">
-          <AiTwotoneMinusCircle className="iconMinus" />
-          <AiTwotonePlusCircle className="iconPlus" />
-        </Col>
-        <Col className="actionIcons">
-          <AiTwotoneDelete className="iconDelete" />
-        </Col>
-      </Row>
+      {cart?.length < 1 ? (
+        <Row className="cartItemRow">
+          <col className="text-center">Cart Empty....</col>
+        </Row>
+      ) : (
+        cart?.map((item) => (
+          <Row className="cartItemRow" key={item.id}>
+            <Col>{item.title}</Col>
+            <Col>[x {item.quantity}]</Col>
+            <Col>Rs {item.price * item.quantity}</Col>
+            <Col className="actionIcons plusMinusIcon">
+              <AiTwotoneMinusCircle className="iconMinus" />
+              <AiTwotonePlusCircle className="iconPlus" />
+            </Col>
+            <Col className="actionIcons">
+              <AiTwotoneDelete className="iconDelete" />
+            </Col>
+          </Row>
+        ))
+      )}
     </>
   );
 };

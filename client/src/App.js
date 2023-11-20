@@ -1,20 +1,34 @@
 import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/react-bootstrap/dist/react-bootstrap.min.js";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Carousal from "./components/UI/Carousal";
-import Products from "./components/Products/Products";
+import { AppRouter } from "./routes/AppRouter.js";
+import { RouterProvider } from "react-router-dom";
+// import Home from "./components/Home";
+import Header from "./components/Header/Header.js";
+import Footer from "./components/Footer/Footer.js";
+// import Carousal from "./components/UI/Carousal.js";
+// import Products from "./components/Products/Products.js";
 
 const App = () => {
   return (
-    <div className="d-flex flex-column min-vh-100">
+    <>
       <Header />
-      <Carousal />
-      <Products />
+      <RouterProvider router={AppRouter} />
       <Footer />
-    </div>
+    </>
   );
 };
 
 export default App;
+
+// (
+// <div className="d-flex flex-column min-vh-100">
+
+{
+  /* <Header />
+      <Carousal />
+      <Products />
+      <Footer />
+    </div> */
+}
+// );

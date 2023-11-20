@@ -1,5 +1,9 @@
 import "./Header.css";
+import { BrowserRouter, NavLink, Routes, Route } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
+// import Store from "../Store";
+// import Home from "../Home";
+// import About from "../About";
 
 const HeaderNavLinks = () => {
   return (
@@ -17,4 +21,17 @@ const HeaderNavLinks = () => {
   );
 };
 
+// const AppRouter = () => {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route to="/" exact element={<Home />} />
+//         <Route to="/about" element={<About />} />
+//         <Route to="/store" element={<Store />} />
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// };
+
 export default HeaderNavLinks;
+// export { AppRouter };

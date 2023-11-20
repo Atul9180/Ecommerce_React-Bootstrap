@@ -16,7 +16,7 @@ const Header = () => {
     >
       <Container>
         {/* BrandLogo */}
-        <Navbar.Brand href="/" className="brandName">
+        <Navbar.Brand className="brandName">
           <FcShop />
           Mart
         </Navbar.Brand>
