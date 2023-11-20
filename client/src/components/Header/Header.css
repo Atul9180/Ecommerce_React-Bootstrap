@@ -21,9 +21,10 @@
   border-bottom: hidden 2px solid;
 }
 
-.nav-link:hover {
-  border-bottom: 2px solid rgb(95, 72, 3);
-  color: #ffc107;
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  border-bottom: 4px solid rgb(95, 72, 3);
+  color: #ffc107 !important;
 }
 
 .cart {

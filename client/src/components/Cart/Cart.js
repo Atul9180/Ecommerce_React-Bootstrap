@@ -12,7 +12,7 @@ const Cart = () => {
   return (
     <>
       <Row className="text-center">
-        <span>Cart</span>
+        <span className="CartHeading">Cart</span>
         <hr />
       </Row>
 

@@ -30,7 +30,8 @@
 Image {
   max-width: 100%;
   overflow-clip-margin: content-box;
-  overflow: cover;
+  /* overflow: cover; */
+  object-fit: cover;
 }
 
 .about-img1 {

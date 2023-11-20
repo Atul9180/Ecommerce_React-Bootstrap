@@ -1,0 +1,41 @@
+.tourNames {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.tourNames h2 {
+  font-family: "Metal Mania", cursive;
+  margin-bottom: 20px;
+  font-size: 40px;
+}
+
+.tour-item {
+  display: flex;
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+.tour-item .tour-date {
+  width: 12%;
+}
+
+.tour-item .tour-place {
+  width: 25%;
+  color: #777;
+}
+
+.tour-item .tour-spec-place {
+  width: 53%;
+  color: #777;
+}
+
+.tour-item .buy-btn {
+  width: 20%;
+  background: #56ccf2;
+  color: white;
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}

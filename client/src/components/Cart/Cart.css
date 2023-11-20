@@ -19,6 +19,13 @@
   text-align: center;
 }
 
+.CartHeading {
+  font-size: larger;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: bolder;
+}
+
 .cartItemRow {
   font-size: medium;
   font-weight: bold;
