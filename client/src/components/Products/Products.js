@@ -1,7 +1,7 @@
 import ProductCard from "./SingleProduct";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { CartState } from "../../context/Context";
-import ProductFilter from "./ProductFilter";
+// import ProductFilter from "./ProductFilter";
 
 const Products = () => {
   const {
@@ -11,8 +11,8 @@ const Products = () => {
   return (
     <div className="w-100%">
       <Container fluid className="d-flex mt-4 mb-4">
-        <ProductFilter />
-        {isLoading ? (
+        {/* <ProductFilter /> */}
+        {isLoading && products.length === 0 ? (
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>

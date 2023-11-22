@@ -13,14 +13,14 @@ export const DataContextProvider = ({ children }) => {
   const fetchData = async () => {
     try {
       const response = await fetch("https://dummyjson.com/products");
-      if (response.ok) {
+      if (!response.ok) {
+        throw new Error("Something went wrong....Retrying.");
+      } else {
         const data = await response.json();
         dispatch({
           type: "SET_PRODUCTS",
           payload: data.products,
         });
-      } else {
-        throw new Error("Failed to fetch");
       }
     } catch (error) {
       console.error("Error fetching Products", error);
