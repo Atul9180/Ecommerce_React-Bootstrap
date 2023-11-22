@@ -12,21 +12,26 @@ const ProductCard = ({ item }) => {
   return (
     <div className="productContainer">
       <Card className="itemCard" key={item.id}>
-        <Card.Img variant="top" src={item.imageUrl} alt={item.title} />
+        <Card.Img
+          variant="top"
+          className="productCardImg"
+          src={item.images[0]}
+          alt={item.id + ".jpg"}
+        />
         <Card.Body>
           <Card.Title>{item.title}</Card.Title>
           <Card.Subtitle style={{ padding: 8, paddingLeft: 0 }}>
-            rating: <Rating rating={item.ratings} />
+            rating: <Rating rating={item.rating} />
           </Card.Subtitle>
-          <Card.Subtitle style={{ padding: 8, paddingLeft: 0 }}>
+          {/* <Card.Subtitle style={{ padding: 8, paddingLeft: 0 }}>
             {item.fastDelivery ? (
               <span style={{ color: "green" }}>*fast Delivery</span>
             ) : (
               <span style={{ color: "grey" }}>*standard Delivery</span>
             )}
-          </Card.Subtitle>
+          </Card.Subtitle> */}
           <Card.Text style={{ fontWeight: "bold" }}>
-            Rs. {item?.price?.split(".")[0]}
+            Rs. {item?.price}
           </Card.Text>
 
           {cart?.some((p) => p.id === item.id) ? (
@@ -40,12 +45,12 @@ const ProductCard = ({ item }) => {
             </Button>
           ) : (
             <Button
-              disabled={!item.inStock}
+              disabled={!item.stock}
               onClick={() => {
                 dispatch({ type: "ADD_TO_CART", payload: item });
               }}
             >
-              {!item.inStock ? "Out of Stock" : "Add To Cart"}
+              {!item.stock ? "Out of Stock" : "Add To Cart"}
             </Button>
           )}
         </Card.Body>

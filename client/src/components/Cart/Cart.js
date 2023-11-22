@@ -35,14 +35,14 @@ const Cart = () => {
             <Row className="cartItemRow text-center mb-2" key={item.id}>
               <Col className=" text-center">
                 <img
-                  src={item.imageUrl}
+                  src={item.images[0]}
                   className="cartItemImg"
                   alt={item.title}
                 />
               </Col>
               <Col>{item.title}</Col>
               <Col>[x {item.qty}]</Col>
-              <Col>Rs {item.price.split(".")[0] * item.qty}</Col>
+              <Col>Rs {item.price * item.qty}</Col>
               <Col>
                 <AiFillDelete
                   className="iconDelete"

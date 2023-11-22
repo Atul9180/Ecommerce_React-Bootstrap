@@ -2,6 +2,9 @@
   min-width: 19vw;
   cursor: pointer;
 }
+.productCardImg {
+  height: 240px;
+}
 
 .productContainer {
   display: flex;

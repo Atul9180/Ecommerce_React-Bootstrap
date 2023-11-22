@@ -26,7 +26,7 @@ const Products = () => {
 
 export default Products;
 
-//with filter in return....
+//without filter in return....
 
 // <Container className="mt-4 mb-4">
 //   <Row xs={1} md={2} lg={4} className="d-flex gy-4 gx-5  ">
