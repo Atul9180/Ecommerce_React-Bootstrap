@@ -6,24 +6,31 @@ const DataContext = createContext();
 export const DataContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, {
     products: [],
+    isLoading: true,
     cart: [],
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://dummyjson.com/products");
-        if (response.ok) {
-          const data = await response.json();
-          dispatch({ type: "SET_PRODUCTS", payload: data.products });
-        } else {
-          throw new Error("Failed to fetch");
-        }
-      } catch (error) {
-        console.error("Error fetching Products", error);
-        dispatch({ type: "SET_PRODUCTS", payload: [] });
+  const fetchData = async () => {
+    try {
+      const response = await fetch("https://dummyjson.com/products");
+      if (response.ok) {
+        const data = await response.json();
+        dispatch({
+          type: "SET_PRODUCTS",
+          payload: data.products,
+        });
+      } else {
+        throw new Error("Failed to fetch");
       }
-    };
+    } catch (error) {
+      console.error("Error fetching Products", error);
+      dispatch({ type: "SET_PRODUCTS", payload: [] });
+    } finally {
+      dispatch({ type: "SET_LOADING", payload: false });
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
