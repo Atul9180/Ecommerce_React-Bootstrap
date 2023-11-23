@@ -3,10 +3,17 @@ export const cartReducer = (state, action) => {
     case "SET_LOADING":
       return { ...state, isLoading: action.payload };
 
+    case "SET_ERROR":
+      return { ...state, error: action.payload };
+
+    case "SET_RETRY_INTERVAL":
+      return { ...state, retryIntervalId: action.payload };
+
     case "SET_PRODUCTS":
       return {
         ...state,
         products: action.payload,
+        error: null,
       };
 
     case "ADD_TO_CART":
