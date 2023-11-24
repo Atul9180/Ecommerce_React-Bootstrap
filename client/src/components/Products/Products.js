@@ -1,8 +1,7 @@
-import ProductCard from "./SingleProduct";
+import ProductCard from "./ProductCard";
 import { Container, Row, Col, Spinner, Button } from "react-bootstrap";
 import { CartState } from "../../context/Context";
 import { useEffect, useMemo, useCallback } from "react";
-// import ProductFilter from "./ProductFilter";
 
 const Products = () => {
   const {
