@@ -14,6 +14,9 @@ const HeaderNavLinks = () => {
       <Nav.Link as={NavLink} to="/about" className="nav-link">
         ABOUT
       </Nav.Link>
+      <Nav.Link as={NavLink} to="/contact" className="nav-link">
+        CONTACT
+      </Nav.Link>
     </Nav>
   );
 };
