@@ -1,15 +1,12 @@
 import "./home.css";
 import { Container } from "react-bootstrap";
 import Carousal from "../components/UI/Carousal";
-import FireProdCRUD from "../components/Products/FireProdCRUD";
 
 const Home = () => {
   return (
     <>
       <Carousal />
       <Container className="w-100 text-center p-4">
-        <FireProdCRUD />
-
         <section className="tourNames">
           <h2>TOURS</h2>
           <div>
