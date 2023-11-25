@@ -9,6 +9,7 @@ const Home = () => {
       <Carousal />
       <Container className="w-100 text-center p-4">
         <FireProdCRUD />
+
         <section className="tourNames">
           <h2>TOURS</h2>
           <div>

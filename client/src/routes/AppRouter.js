@@ -4,6 +4,7 @@ import About from "../pages/About";
 import Store from "../pages/Store";
 import ContactUs from "../pages/ContactUs";
 import ProductDetails from "../components/Products/ProductDetails";
+import PageNotFound from "../pages/PageNotFound";
 
 const AppRouter = () => {
   return (
@@ -13,6 +14,7 @@ const AppRouter = () => {
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/product/:id" element={<ProductDetails />} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 };
