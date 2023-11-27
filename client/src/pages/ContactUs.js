@@ -21,16 +21,18 @@ const ContactUs = () => {
       message: messageRef.current.value,
     };
 
-    console.log(contactFormData);
-
     try {
       const response = await axios.post(
         "https://reactecommerce-fea10-default-rtdb.asia-southeast1.firebasedatabase.app/contactUs.json",
         contactFormData
       );
-      console.log("added messages: ", response.data);
-      setShowErrorAlert(false);
-      setShowSuccessAlert(true);
+      if (response.data) {
+        console.log("added messages: ", response.data);
+        setShowErrorAlert(false);
+        setShowSuccessAlert(true);
+      } else {
+        throw new Error("Error in msg sending..");
+      }
     } catch (err) {
       console.log("Error in sending message : ", err);
       setShowErrorAlert(true);
@@ -45,14 +47,14 @@ const ContactUs = () => {
 
   return (
     <>
-      <div className="text-center m-0 p-0 pt-3 ">
-        <h5 className="display-2 fw-semibold">CONTACT US</h5>
+      <div className="text-center pt-3 ">
+        <h5 className="display-1 fw-semibold ">CONTACT US</h5>
       </div>
 
       <Container className="d-flex justify-content-center align-items-center vh-100">
         <Form
           onSubmit={submitHandler}
-          className="w-75 p-3 pt-1 bg-light rounded"
+          className="w-75 w-sm-98 p-3 pt-1 bg-light rounded shadow"
         >
           {showSuccessAlert && (
             <Alert
@@ -130,3 +132,27 @@ const ContactUs = () => {
 };
 
 export default ContactUs;
+
+// import React from "react";
+// import ReusableForm from "./ReusableForm";
+
+// const ContactUs = () => {
+//   const formFields = [
+//     { label: "Name", ref: "nameRef", name: "name", type: "text", required: true },
+//     { label: "Email", ref: "emailRef", name: "email", type: "email", required: true },
+//     { label: "Phone Number", ref: "phoneRef", name: "phone", type: "number", required: true },
+//     { label: "Message", ref: "messageRef", name: "message", type: "textarea", required: false },
+//   ];
+
+//   return (
+//     <ReusableForm
+//       formType="Contact Us"
+//       formFields={formFields}
+//       endpoint="https://your-contact-us-endpoint.com"
+//       successMessage="Message sent successfully!"
+//       errorMessage="Error sending message. Please try again later."
+//     />
+//   );
+// };
+
+// export default ContactUs;

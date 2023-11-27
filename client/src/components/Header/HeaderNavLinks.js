@@ -17,6 +17,15 @@ const HeaderNavLinks = () => {
       <Nav.Link as={NavLink} to="/contact" className="nav-link">
         CONTACT
       </Nav.Link>
+      <Nav.Link as={NavLink} to="/signup" className="nav-link">
+        SignUp
+      </Nav.Link>
+      <Nav.Link as={NavLink} to="/auth" className="nav-link">
+        AuthLogin
+      </Nav.Link>
+      <Nav.Link as={NavLink} to="/login" className="nav-link">
+        Login
+      </Nav.Link>
     </Nav>
   );
 };
