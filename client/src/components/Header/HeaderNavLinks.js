@@ -1,10 +1,11 @@
 import "./Header.css";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { AuthContextData } from "../../context/Auth/AuthContext";
 
 const HeaderNavLinks = () => {
-  const { token } = AuthContextData();
+  const { token, logout } = AuthContextData();
 
   return (
     <Nav className="m-auto">
@@ -20,13 +21,12 @@ const HeaderNavLinks = () => {
       <Nav.Link as={NavLink} to="/contact" className="nav-link">
         CONTACT
       </Nav.Link>
-<<<<<<< HEAD
 
       {token ? (
         <>
-          <Nav.Link as={NavLink} to="/auth" className="nav-link">
-            Logout
-          </Nav.Link>
+          <NavLink as={NavLink} to="" className="nav-link">
+            <button onClick={() => logout()}>Logout</button>
+          </NavLink>
           {/* Display logged-in user's email */}
           <span>{/* Display user email here */}</span>
         </>
@@ -37,25 +37,6 @@ const HeaderNavLinks = () => {
           </Nav.Link>
         </>
       )}
-
-      {/* <Nav.Link as={NavLink} to="/signup" className="nav-link">
-        SignUp
-      </Nav.Link> */}
-
-      {/* <Nav.Link as={NavLink} to="/login" className="nav-link">
-        Login
-      </Nav.Link> */}
-=======
-      <Nav.Link as={NavLink} to="/signup" className="nav-link">
-        SignUp
-      </Nav.Link>
-      <Nav.Link as={NavLink} to="/auth" className="nav-link">
-        AuthLogin
-      </Nav.Link>
-      <Nav.Link as={NavLink} to="/login" className="nav-link">
-        Login
-      </Nav.Link>
->>>>>>> 255ecab1e337bfa23b87d44bcd757e07496c58d3
     </Nav>
   );
 };

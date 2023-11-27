@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { Row, Col, Image, Button, Spinner } from "react-bootstrap";
 import Rating from "./Rating";
 import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const ProductDetails = () => {
   const { id } = useParams();

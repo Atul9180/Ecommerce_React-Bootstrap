@@ -1,5 +1,6 @@
 // import React, { useContext } from "react";
 import "./Cart.css";
+import React from "react";
 import { Row, Col } from "react-bootstrap";
 import {
   AiTwotonePlusCircle,

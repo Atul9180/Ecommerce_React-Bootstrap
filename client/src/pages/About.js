@@ -1,4 +1,5 @@
 import "./About.css";
+import React from "react";
 import { Row, Col, Image, Container } from "react-bootstrap";
 import signatureImg from "../assets/signature.png";
 import aboutImg1 from "../assets/about1.jpg";

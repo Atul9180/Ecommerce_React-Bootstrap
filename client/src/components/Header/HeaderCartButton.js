@@ -1,4 +1,5 @@
 import "./Header.css";
+import React from "react";
 import { Nav, Badge, Dropdown, DropdownButton } from "react-bootstrap";
 import { MdShoppingCart } from "react-icons/md";
 import { CartState } from "../../context/Context";

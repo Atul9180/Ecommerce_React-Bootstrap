@@ -1,7 +1,7 @@
 import ProductCard from "./ProductCard";
 import { Container, Row, Col, Spinner, Button } from "react-bootstrap";
 import { CartState } from "../../context/Context";
-import { useEffect, useMemo, useCallback } from "react";
+import React, { useEffect, useMemo, useCallback } from "react";
 
 const Products = () => {
   const {

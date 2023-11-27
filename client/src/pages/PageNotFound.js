@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { FaHome, FaPhoneSquareAlt } from "react-icons/fa";
-// import "./PageNotFound.css";
+import React from "react";
 
 const PageNotFound = () => {
   const navigate = useNavigate();

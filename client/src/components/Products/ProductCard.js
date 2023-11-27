@@ -1,4 +1,5 @@
 import { Button, Card } from "react-bootstrap";
+import React from "react";
 import "./ProductCard.css";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";

@@ -1,4 +1,5 @@
 import "./Cart.css";
+import React from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { CartState } from "../../context/Context";
 import { Button, Row, Col } from "react-bootstrap";
@@ -66,72 +67,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-/* <Col className="actionIcons plusMinusIcon">
-          <AiTwotoneMinusCircle className="iconMinus" />
-          <AiTwotonePlusCircle className="iconPlus" />
-        </Col>
-        <Col className="actionIcons">
-          <AiTwotoneDelete className="iconDelete" />
-        </Col> */
-
-// import ReactDOM from "react-dom";
-// import "./Cart.css";
-// import { Modal, Button, Row, Col } from "react-bootstrap";
-// import CartItemsList from "./CartItemsList";
-// import { CartState } from "../../context/Context";
-
-// const Cart = ({ handleCartButtonToggle }) => {
-//   const {
-//     state: { cart },
-//   } = CartState();
-
-//   return ReactDOM.createPortal(
-//     <Modal
-//       show={handleCartButtonToggle}
-//       onHide={handleCartButtonToggle}
-//       backdrop="static"
-//       keyboard={false}
-//       size="lg"
-//       aria-labelledby="contained-modal-title-vcenter"
-//       centered
-//     >
-//       <Modal.Header closeButton>
-//         <Modal.Title className="text-center">Cart </Modal.Title>
-//       </Modal.Header>
-//       <Modal.Body className="pb-0 text-center">
-//         <div className="CartItemColHeading">
-//           <Row>
-//             <Col>Item</Col>
-//             <Col>Quantity</Col>
-//             <Col>Price</Col>
-//             <Col>Action</Col>
-//             <Col>Delete</Col>
-//           </Row>
-//         </div>
-//         <div className="cartItemsList">
-//           <CartItemsList />
-//         </div>
-
-//         <div className="text-end mt-4">
-//           <h5>Total Price: Rs. {totalCartPrice} </h5>
-//         </div>
-//       </Modal.Body>
-//       <Modal.Footer>
-//         <Button
-//           className="CartCloseBtn"
-//           variant="secondary"
-//           onClick={handleCartButtonToggle}
-//         >
-//           Close
-//         </Button>
-//         <Button className="proceedToPayBtn" variant="success">
-//           Proceed To Payment
-//         </Button>
-//       </Modal.Footer>
-//     </Modal>,
-//     document.getElementById("cart-root")
-//   );
-// };
-
-// export default Cart;

@@ -1,4 +1,5 @@
 import "./home.css";
+import React from "react";
 import { Container } from "react-bootstrap";
 import Carousal from "../components/UI/Carousal";
 
