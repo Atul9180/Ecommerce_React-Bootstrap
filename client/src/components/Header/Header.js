@@ -13,7 +13,7 @@ const Header = () => {
       collapseOnSelect
       expand="sm"
       variant="dark"
-      className="sticky-top"
+      className="sticky-top py-2 bg-body-primary"
     >
       <Container>
         {/* BrandLogo */}

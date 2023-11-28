@@ -1,50 +1,77 @@
 import classes from "./ChangePassword.module.css";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { AuthContextData } from "../../context/Auth/AuthContext";
 
 const ChangePassword = () => {
   const { token } = AuthContextData();
   const newPasswordInputRef = useRef(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [successMsg, setSuccessMsg] = useState(null);
 
   const handleSubmit = async (e) => {
-    e.preventddefault();
+    e.preventDefault();
     const enteredPassword = newPasswordInputRef.current.value;
-    await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${process.env.REACT_APP_API_KEY}`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          idToken: token,
-          password: enteredPassword,
-          returnSecureToken: true,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+
+    try {
+      const response = await fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${process.env.REACT_APP_API_KEY}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            idToken: token,
+            password: enteredPassword,
+            returnSecureToken: true,
+          }),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error.message);
       }
-    ).then(async (res) => {
-      await res?.json().then((data) => {
-        console.log("changed Password: ", data);
-      });
-    });
+
+      setSuccessMsg(
+        "Password changed Successfully. Logout and relogin with the changed password"
+      );
+      setErrorMsg(null);
+      newPasswordInputRef.current.value = "";
+    } catch (error) {
+      setErrorMsg(error.message);
+      setSuccessMsg(null);
+      console.log("Something went wrong");
+    }
   };
 
   return (
-    <form className={classes.form} onSubmit={handleSubmit}>
-      <div className={classes.control}>
-        <label htmlFor="new-password">New Password</label>
-        <input
-          ref={newPasswordInputRef}
-          minLength="7"
-          type="password"
-          id="new-password"
-          required
-        />
-      </div>
-      <div className={classes.action}>
-        <button type="submit">Change Password</button>
-      </div>
-    </form>
+    <>
+      {errorMsg && (
+        <div className="flex justify-content-center text-align-center text-red">
+          {errorMsg}
+        </div>
+      )}
+      {successMsg && (
+        <div className="flex justify-content-center text-align-center text-green">
+          {successMsg}
+        </div>
+      )}
+
+      <form className={classes.form} onSubmit={handleSubmit}>
+        <div className={classes.control}>
+          <label htmlFor="new-password">New Password</label>
+          <input
+            ref={newPasswordInputRef}
+            minLength="7"
+            type="password"
+            id="new-password"
+            required
+          />
+        </div>
+        <div className={classes.action}>
+          <button type="submit">Change Password</button>
+        </div>
+      </form>
+    </>
   );
 };
 

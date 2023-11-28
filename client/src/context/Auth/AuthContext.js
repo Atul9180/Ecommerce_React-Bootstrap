@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from "react";
+// import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext({
   token: null,
@@ -8,6 +9,7 @@ export const AuthContext = createContext({
 });
 
 export const AuthContextProvider = ({ children }) => {
+  // const navigate = useNavigate();
   const [token, setToken] = useState(null);
 
   //convert truthly/falsy value to boolean: denotes falsy if empty convert it to boolean
@@ -20,7 +22,6 @@ export const AuthContextProvider = ({ children }) => {
 
   const logoutHandler = () => {
     setToken(null);
-    console.log("logged out successfully..!");
   };
 
   const contextValue = {
