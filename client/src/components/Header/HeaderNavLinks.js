@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import { AuthContextData } from "../../context/Auth/AuthContext";
 
 const HeaderNavLinks = () => {
-  const { token, logout } = AuthContextData();
+  const { isLoggedIn, logout } = AuthContextData();
 
   return (
     <Nav className="m-auto">
@@ -22,19 +22,23 @@ const HeaderNavLinks = () => {
         CONTACT
       </Nav.Link>
 
-      {token ? (
+      {!isLoggedIn && (
+        <Nav.Link as={NavLink} to="/auth" className="nav-link">
+          Login
+        </Nav.Link>
+      )}
+
+      {isLoggedIn && (
         <>
           <NavLink as={NavLink} to="" className="nav-link">
             <button onClick={() => logout()}>Logout</button>
           </NavLink>
-          {/* Display logged-in user's email */}
-          <span>{/* Display user email here */}</span>
-        </>
-      ) : (
-        <>
-          <Nav.Link as={NavLink} to="/auth" className="nav-link">
-            AuthLogin
-          </Nav.Link>
+          <NavLink as={NavLink} to="/changepassword" className="nav-link">
+            Changepassword
+          </NavLink>
+          <NavLink as={NavLink} to="/userprofile" className="nav-link">
+            userprofile
+          </NavLink>
         </>
       )}
     </Nav>

@@ -7,8 +7,12 @@ import ContactUs from "../pages/ContactUs";
 import ProductDetails from "../components/Products/ProductDetails";
 import PageNotFound from "../pages/PageNotFound";
 import AuthForm from "../components/Auth/AuthForm";
+import ChangePassword from "../components/User/ChangePassword";
+import UserProfile from "../components/User/UserProfile";
+import { AuthContextData } from "../context/Auth/AuthContext";
 
 const AppRouter = () => {
+  const { isLoggedIn } = AuthContextData();
   return (
     <Routes>
       <Route path="/" exact element={<Home />} />
@@ -16,7 +20,13 @@ const AppRouter = () => {
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/product/:id" element={<ProductDetails />} />
-      <Route path="/auth" element={<AuthForm />} />
+      {!isLoggedIn && <Route path="/auth" element={<AuthForm />} />}
+      {isLoggedIn && (
+        <>
+          <Route path="/changepassword" element={<ChangePassword />} />
+          <Route path="/userprofile" element={<UserProfile />} />
+        </>
+      )}
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

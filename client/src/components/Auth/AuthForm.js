@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import classes from "./AuthForm.module.css";
 import { AuthContextData } from "../../context/Auth/AuthContext";
 
 const AuthForm = () => {
+  const history = useHistory();
   const { login } = AuthContextData();
 
   const [isLoginForm, setIsLoginForm] = useState(false);
@@ -51,12 +53,13 @@ const AuthForm = () => {
 
       setIsLoading(false);
 
-      if (res.ok) {
+      if (res?.ok) {
         const data = await res.json();
         setSuccessMsg(doLogin ? "Login Successful" : "Signup Successful");
         setErrorMsg(null);
         emptyFormCredentials();
         await login(data.idToken);
+        history.replace("/");
       } else {
         const data = await res.json();
         setErrorMsg(data.error.message);
