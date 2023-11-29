@@ -9,18 +9,19 @@ export const AuthContext = createContext({
 });
 
 export const AuthContextProvider = ({ children }) => {
-  // const navigate = useNavigate();
-  const [token, setToken] = useState(null);
+  const initialToken = localStorage.getItem("idToken");
+  const [token, setToken] = useState(initialToken);
 
   //convert truthly/falsy value to boolean: denotes falsy if empty convert it to boolean
   const userIsLoggedIn = !!token;
 
   const loginHandler = (idToken) => {
-    console.log("Firebase idToken is: ", idToken);
     setToken(idToken);
+    localStorage.setItem("idToken", idToken);
   };
 
   const logoutHandler = () => {
+    localStorage.removeItem("idToken");
     setToken(null);
   };
 

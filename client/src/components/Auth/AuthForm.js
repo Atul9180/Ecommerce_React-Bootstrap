@@ -7,7 +7,7 @@ const AuthForm = () => {
   const navigate = useNavigate();
   const { login } = AuthContextData();
 
-  const [isLoginForm, setIsLoginForm] = useState(false);
+  const [isLoginForm, setIsLoginForm] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
