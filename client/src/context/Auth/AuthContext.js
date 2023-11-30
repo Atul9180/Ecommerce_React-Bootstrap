@@ -37,7 +37,7 @@ export const AuthContextProvider = ({ children }) => {
     setToken(null);
   }, []);
 
-  //getting remaining expire timer for token:
+  //Calculate remaining time for token expiration
   const calculateRemainingTime = useCallback(() => {
     const storedExpiration = localStorage.getItem("expiresIn");
     if (storedExpiration) {
@@ -47,34 +47,27 @@ export const AuthContextProvider = ({ children }) => {
     return 0;
   }, []);
 
-  //auto log out when on TokenExpire:
-  const runLogOutTimer = useCallback(() => {
-    const remainingTime = calculateRemainingTime();
-    if (remainingTime === 0) return;
+  useEffect(() => {
+    const handlePageRefresh = () => {
+      const remaining = calculateRemainingTime();
+      if (remaining === 0) {
+        logoutHandler();
+        alert("Your session has been logged out , Please Re-login.");
+      }
+    };
 
-    const logoutTimer = setTimeout(() => {
-      alert("Your session has been logged out due to inactivity");
-      logoutHandler();
-    }, remainingTime);
+    window.addEventListener("beforeunload", handlePageRefresh);
 
     return () => {
-      clearTimeout(logoutTimer);
+      window.removeEventListener("beforeunload", handlePageRefresh);
     };
   }, [calculateRemainingTime, logoutHandler]);
-
-  useEffect(() => {
-    const logoutTimer = runLogOutTimer();
-    return () => {
-      if (logoutTimer) logoutTimer();
-    };
-  }, [runLogOutTimer]);
 
   const contextValue = {
     token: token,
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
-    autoLogOut: runLogOutTimer,
   };
 
   return (
