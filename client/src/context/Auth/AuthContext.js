@@ -21,7 +21,7 @@ export const AuthContextProvider = ({ children }) => {
   //convert truthly/falsy value to boolean: denotes falsy if empty convert it to boolean
   const userIsLoggedIn = !!token;
 
-  //login
+  //login--------
   const loginHandler = (idToken, expiresIn) => {
     localStorage.setItem("idToken", idToken);
     localStorage.setItem(
@@ -31,13 +31,14 @@ export const AuthContextProvider = ({ children }) => {
     setToken(idToken);
   };
 
+  //logout------
   const logoutHandler = useCallback(() => {
     localStorage.removeItem("idToken");
     localStorage.removeItem("expiresIn");
     setToken(null);
   }, []);
 
-  //Calculate remaining time for token expiration
+  //Calculate remaining time for token expiration---
   const calculateRemainingTime = useCallback(() => {
     const storedExpiration = localStorage.getItem("expiresIn");
     if (storedExpiration) {
@@ -57,7 +58,6 @@ export const AuthContextProvider = ({ children }) => {
     };
 
     window.addEventListener("beforeunload", handlePageRefresh);
-
     return () => {
       window.removeEventListener("beforeunload", handlePageRefresh);
     };
