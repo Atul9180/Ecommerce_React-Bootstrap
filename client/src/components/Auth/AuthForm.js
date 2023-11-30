@@ -55,11 +55,14 @@ const AuthForm = () => {
 
       if (res?.ok) {
         const data = await res.json();
-        console.log("firebase response: ", { data });
+        //console.log("firebase response: ", { data });
         setSuccessMsg(doLogin ? "Login Successful" : "Signup Successful");
         setErrorMsg(null);
         emptyFormInputCredentials();
-        login(data.idToken);
+
+        //get expireIn time and convert to milisec numbers
+        let expirationTime = +60 * 1000;
+        login(data.idToken, expirationTime);
         navigate("/", { replace: true });
       } else {
         const data = await res.json();
