@@ -14,26 +14,37 @@ const ProductCard = ({ item }) => {
 
   return (
     <div className="productContainer">
-      <Link to={`/product/${item.id}`} className="itemLink">
-        <Card className="itemCard" key={item.id}>
+      <Card
+        className={`itemCard d-flex align-items-center ${
+          window.innerWidth < 500 ? "flex-row" : "flex-column"
+        }`}
+        key={item.id}
+      >
+        <Link to={`/product/${item.id}`} className="imageLink">
           <Card.Img
             variant="top"
             className="productCardImg"
             src={item.images[0]}
             alt={item.id + ".jpg"}
           />
-          <Card.Body>
-            <Card.Title>{item.title}</Card.Title>
+        </Link>
+        <Card.Body
+          className={`d-flex justify-content-between align-items-center w-100 ${
+            window.innerWidth < 576 ? "flex-row" : "flex-column"
+          }`}
+        >
+          <div>
+            <Link to={`/product/${item.id}`}>
+              <Card.Title style={{ color: "black", textDecoration: "none" }}>
+                {item.title}
+              </Card.Title>
+            </Link>
+            <br />
             <Card.Subtitle style={{ padding: 8, paddingLeft: 0 }}>
               rating: <Rating rating={item.rating} />
             </Card.Subtitle>
-            {/* <Card.Subtitle style={{ padding: 8, paddingLeft: 0 }}>
-            {item.fastDelivery ? (
-              <span style={{ color: "green" }}>*fast Delivery</span>
-            ) : (
-              <span style={{ color: "grey" }}>*standard Delivery</span>
-            )}
-          </Card.Subtitle> */}
+          </div>
+          <div className="text-center">
             <Card.Text style={{ fontWeight: "bold" }}>
               Rs. {item?.price}
             </Card.Text>
@@ -57,14 +68,11 @@ const ProductCard = ({ item }) => {
                 {!item.stock ? "Out of Stock" : "Add To Cart"}
               </Button>
             )}
-          </Card.Body>
-        </Card>
-      </Link>
+          </div>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
 
 export default ProductCard;
-
-//require cart : as we have to control Out Of Stock and Remove From Cart(if some/any exists in cart) Btns
-//require dispatch fn. as it will be passed with {type and payload} on btn click

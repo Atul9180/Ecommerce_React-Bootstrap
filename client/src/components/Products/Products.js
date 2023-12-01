@@ -55,7 +55,7 @@ const Products = () => {
         <Container fluid className="mt-4 mb-4">
           <Row xs={1} md={2} lg={4} className="d-flex gy-4 gx-4">
             {products.map((item) => (
-              <Col key={item.id + Math.random()}>
+              <Col key={item.id + Math.random()} className="gx-4">
                 <ProductCard item={item} />
               </Col>
             ))}

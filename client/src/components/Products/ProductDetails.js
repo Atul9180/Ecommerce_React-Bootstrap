@@ -48,7 +48,6 @@ const ProductDetails = () => {
     brand,
     discountPercentage,
     images,
-    thumbnail,
     category,
     rating,
     description,
@@ -61,7 +60,6 @@ const ProductDetails = () => {
       <Row>
         <Col md={6}>
           <Image src={images[0]} alt={title} fluid />
-          <Image src={thumbnail} alt={thumbnail} fluid />
         </Col>
         <Col md={6}>
           <h2>{title}</h2>
