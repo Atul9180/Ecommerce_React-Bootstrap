@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import classes from "./AuthForm.module.css";
 import { AuthContextData } from "../../context/Auth/AuthContext";
@@ -19,6 +20,8 @@ const AuthForm = () => {
     setErrorMsg(null);
     setSuccessMsg(null);
   };
+
+  //dummy login credentials for test purpose
 
   const emptyFormInputCredentials = () => {
     emailRef.current.value = "";
@@ -102,6 +105,12 @@ const AuthForm = () => {
     );
   };
 
+  //fill dummy login details
+  const fillFormWithCredentials = () => {
+    emailRef.current.value = "lamok@gmail.com";
+    passwordRef.current.value = "lamok88";
+  };
+
   return (
     <>
       <section className={classes.auth}>
@@ -143,6 +152,19 @@ const AuthForm = () => {
           </div>
         </form>
       </section>
+
+      {/* Button to fill form with credentials */}
+      {isLoginForm && (
+        <div className=" mx-auto">
+          <Button
+            className="fw-bold"
+            variant="primary"
+            onClick={fillFormWithCredentials}
+          >
+            Fill with Test Credentials
+          </Button>
+        </div>
+      )}
     </>
   );
 };

@@ -1,35 +1,55 @@
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { Row, Col, Image, Button } from "react-bootstrap";
+import { CartState } from "../../context/Context";
 import ReusableSpinner from "../UI/ReusableSpinner";
 import Rating from "./Rating";
 import axios from "axios";
-import React, { useCallback, useEffect, useState, useMemo } from "react";
+import { useRequireAuth } from "../../hooks/useRequireAuth";
 
 const ProductDetails = () => {
+  useRequireAuth();
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const productId = Number(id);
+
+  const {
+    state: { products, cart },
+    dispatch,
+  } = CartState();
+
+  const isInCart = cart.some((item) => item.id === productId);
+
+  const productFromContext = products.find((item) => item.id === productId);
+
+  const [product, setProduct] = useState(productFromContext || null);
+  const [isLoading, setIsLoading] = useState(!productFromContext);
   const [error, setError] = useState(null);
 
   const fetchProductData = useCallback(async () => {
     try {
-      const response = await axios.get(`https://dummyjson.com/products/${id}`);
-      setProduct(response.data);
+      const response = await axios.get(
+        `https://dummyjson.com/products/${productId}`
+      );
+      const fetchedProduct = response.data;
+
+      setProduct(fetchedProduct);
+      setIsLoading(false);
     } catch (error) {
       setError(error);
-    } finally {
       setIsLoading(false);
     }
-  }, [id]);
+  }, [productId]);
 
   useEffect(() => {
-    fetchProductData();
-  }, [fetchProductData]);
-
-  const renderLoader = useMemo(() => <ReusableSpinner />, []);
+    if (product === null) {
+      fetchProductData();
+    } else {
+      setIsLoading(false);
+    }
+  }, [fetchProductData, product]);
 
   if (isLoading) {
-    return renderLoader;
+    return <ReusableSpinner />;
   }
 
   if (error) {
@@ -44,8 +64,8 @@ const ProductDetails = () => {
     product;
 
   return (
-    <div className="vh-100 d-flex justify-content-center align-items-center">
-      <Row>
+    <div className="vh-100 vw-100 d-flex justify-content-center align-items-center">
+      <Row className="p-5 mt-1 mb-1">
         <Col md={6}>
           <Image src={images[0]} alt={title} fluid />
         </Col>
@@ -58,9 +78,26 @@ const ProductDetails = () => {
           <p>{description}</p>
           <h4>Price: Rs.{price}</h4>
           <br />
-          <Button variant="primary" disabled={!stock}>
-            {stock ? "Add to Cart" : "Out of Stock"}
-          </Button>
+
+          {isInCart ? (
+            <Button
+              variant="danger"
+              onClick={() => {
+                dispatch({ type: "REMOVE_FROM_CART", payload: product });
+              }}
+            >
+              Remove From Cart
+            </Button>
+          ) : (
+            <Button
+              disabled={!stock}
+              onClick={() => {
+                dispatch({ type: "ADD_TO_CART", payload: product });
+              }}
+            >
+              {!stock ? "Out of Stock" : "Add To Cart"}
+            </Button>
+          )}
         </Col>
       </Row>
     </div>
