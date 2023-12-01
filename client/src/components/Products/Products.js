@@ -1,5 +1,6 @@
 import ProductCard from "./ProductCard";
-import { Container, Row, Col, Spinner, Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import ReusableSpinner from "../UI/ReusableSpinner";
 import { CartState } from "../../context/Context";
 import React, { useEffect, useMemo, useCallback } from "react";
 
@@ -19,16 +20,7 @@ const Products = () => {
     return () => clearInterval(retryIntervalId);
   }, [retryIntervalId]);
 
-  const renderLoader = useMemo(
-    () => (
-      <Container className="vh-100 d-flex justify-content-center align-items-center">
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </Container>
-    ),
-    []
-  );
+  const renderLoader = useMemo(() => <ReusableSpinner />, []);
 
   const renderError = useMemo(
     () => (

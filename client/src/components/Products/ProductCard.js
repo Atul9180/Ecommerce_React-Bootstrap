@@ -39,7 +39,7 @@ const ProductCard = ({ item }) => {
                 {item.title}
               </Card.Title>
             </Link>
-            <br />
+
             <Card.Subtitle style={{ padding: 8, paddingLeft: 0 }}>
               rating: <Rating rating={item.rating} />
             </Card.Subtitle>
