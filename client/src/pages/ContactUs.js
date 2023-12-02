@@ -27,7 +27,6 @@ const ContactUs = () => {
         contactFormData
       );
       if (response.data) {
-        console.log("added messages: ", response.data);
         setShowErrorAlert(false);
         setShowSuccessAlert(true);
       } else {
@@ -132,27 +131,3 @@ const ContactUs = () => {
 };
 
 export default ContactUs;
-
-// import React from "react";
-// import ReusableForm from "./ReusableForm";
-
-// const ContactUs = () => {
-//   const formFields = [
-//     { label: "Name", ref: "nameRef", name: "name", type: "text", required: true },
-//     { label: "Email", ref: "emailRef", name: "email", type: "email", required: true },
-//     { label: "Phone Number", ref: "phoneRef", name: "phone", type: "number", required: true },
-//     { label: "Message", ref: "messageRef", name: "message", type: "textarea", required: false },
-//   ];
-
-//   return (
-//     <ReusableForm
-//       formType="Contact Us"
-//       formFields={formFields}
-//       endpoint="https://your-contact-us-endpoint.com"
-//       successMessage="Message sent successfully!"
-//       errorMessage="Error sending message. Please try again later."
-//     />
-//   );
-// };
-
-// export default ContactUs;

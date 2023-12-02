@@ -68,3 +68,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Follow Folder Structure:
+
+src/
+|-- components/
+| |-- Auth/
+| | |-- AuthForm.js
+| | |-- ChangePassword.js
+| | |-- UserProfile.js
+| |-- Products/
+| | |-- ProductCard.js
+| | |-- ProductDetails.js
+| |-- UI/
+| | |-- Alert.js
+| | |-- ReusableSpinner.js
+|-- context/
+| |-- AuthContext.js
+| |-- DataContext.js
+|-- hooks/
+| |-- useAuth.js
+| |-- useDataFetching.js
+| |-- useRequireAuth.js
+|-- pages/
+| |-- About.js
+| |-- Cart.js
+| |-- ContactUs.js
+| |-- Home.js
+| |-- PageNotFound.js
+| |-- Store.js
+|-- AppRouter.js
+|-- index.js

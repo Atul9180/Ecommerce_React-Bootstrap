@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import classes from "./AuthForm.module.css";
 import { AuthContextData } from "../../context/Auth/AuthContext";
+import Message from "../UI/Message";
 
 const AuthForm = () => {
   const navigate = useNavigate();
@@ -20,8 +21,6 @@ const AuthForm = () => {
     setErrorMsg(null);
     setSuccessMsg(null);
   };
-
-  //dummy login credentials for test purpose
 
   const emptyFormInputCredentials = () => {
     emailRef.current.value = "";
@@ -64,7 +63,7 @@ const AuthForm = () => {
         emptyFormInputCredentials();
 
         //get expireIn time and convert to milisec numbers
-        let expirationTime = +60 * 1000;
+        let expirationTime = +120 * 1000;
         login(data.idToken, expirationTime);
         navigate("/store", { replace: true });
       } else {
@@ -88,34 +87,17 @@ const AuthForm = () => {
     handleAuth(enteredEmail, enteredPassword, isLoginForm);
   };
 
-  const renderMessages = () => {
-    return (
-      <>
-        {errorMsg && (
-          <div className="bg-white py-0.7 mb-4">
-            <span className="text-red fw-bold">{errorMsg}</span>
-          </div>
-        )}
-        {successMsg && (
-          <div className="bg-white bg-green py-0.7 mb-4">
-            <span className="text-green fw-bold">{successMsg}</span>
-          </div>
-        )}
-      </>
-    );
-  };
-
   //fill dummy login details
   const fillFormWithCredentials = () => {
-    emailRef.current.value = "lamok@gmail.com";
-    passwordRef.current.value = "lamok88";
+    emailRef.current.value = "atul2@gmail.com";
+    passwordRef.current.value = "atul88";
   };
 
   return (
     <>
+      {errorMsg && <Message type="red" message={errorMsg} />}
+      {successMsg && <Message type="green" message={successMsg} />}
       <section className={classes.auth}>
-        {renderMessages()}
-
         <div className="mb-3">
           <h1>{isLoginForm ? "Login" : "Sign Up"}</h1>
         </div>

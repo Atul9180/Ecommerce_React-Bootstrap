@@ -1,6 +1,7 @@
 import classes from "./ChangePassword.module.css";
 import React, { useRef, useState } from "react";
 import { AuthContextData } from "../../context/Auth/AuthContext";
+import Message from "../UI/Message";
 
 const ChangePassword = () => {
   const { token } = AuthContextData();
@@ -45,16 +46,8 @@ const ChangePassword = () => {
 
   return (
     <>
-      {errorMsg && (
-        <div className="flex justify-content-center text-align-center text-red">
-          {errorMsg}
-        </div>
-      )}
-      {successMsg && (
-        <div className="flex justify-content-center text-align-center text-green">
-          {successMsg}
-        </div>
-      )}
+      {errorMsg && <Message type="red" message={errorMsg} />}
+      {successMsg && <Message type="green" message={successMsg} />}
 
       <form className={classes.form} onSubmit={handleSubmit}>
         <div className={classes.control}>

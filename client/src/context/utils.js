@@ -13,32 +13,34 @@ export const fetchDataFromAPI = async () => {
 };
 
 export const addToCart = (state, action) => {
-  const isProductExistsInCart = state.cartItems.findIndex(
-    (item) => item.id === action.payload.id
+  const { cart } = state;
+  const isProductExistsInCart = cart.findIndex(
+    (item) => item.id === action.payload.product.id
   );
   const updatedCartItems =
     isProductExistsInCart > -1
-      ? state.cartItems.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, quantity: item.quantity + action.payload.quantity }
-            : item
+      ? cart.map((itm) =>
+          itm.id === action.payload.product.id
+            ? { ...itm, quantity: itm.quantity + action.payload.quantity }
+            : itm
         )
-      : [...state.cartItems, action.payload];
+      : [...cart, action.payload];
 
-  const updatedTotalCartQuantity =
-    state.totalCartQuantity + action.payload.quantity;
+  // const updatedTotalCartQuantity =
+  //   state.totalCartQuantity + action.payload.quantity;
   const updatedTotalPrice =
-    state.totalCartPrice + action.payload.price * action.payload.quantity;
+    state.totalCartPrice +
+    action.payload.product.price * action.payload.quantity;
 
   return {
     ...state,
-    cartItems: updatedCartItems,
+    cart: updatedCartItems,
     totalCartPrice: updatedTotalPrice,
-    totalCartQuantity: updatedTotalCartQuantity,
+    // totalCartQuantity: updatedTotalCartQuantity,
   };
 };
 
-export const getProductCartQuantity = (cartItems, id) => {
-  const item = cartItems.find((item) => item.id === id);
+export const getProductCartQuantity = (cart, id) => {
+  const item = cart.find((item) => item.id === id);
   return item ? item.quantity : 0;
 };

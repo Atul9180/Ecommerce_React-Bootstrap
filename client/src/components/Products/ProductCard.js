@@ -1,18 +1,20 @@
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import React from "react";
 import "./ProductCard.css";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
 import { CartState } from "../../context/Context";
 import { useRequireAuth } from "../../hooks/useRequireAuth";
+import ProductAddRemoveButton from "../UI/ProductAddRemoveButton";
 
 const ProductCard = ({ item }) => {
   useRequireAuth();
 
   const {
     state: { cart },
-    dispatch,
   } = CartState();
+
+  const isInCart = cart.some((p) => p.id === item.id);
 
   return (
     <div className="productContainer">
@@ -51,25 +53,12 @@ const ProductCard = ({ item }) => {
               Rs. {item?.price}
             </Card.Text>
 
-            {cart?.some((p) => p.id === item.id) ? (
-              <Button
-                variant="danger"
-                onClick={() => {
-                  dispatch({ type: "REMOVE_FROM_CART", payload: item });
-                }}
-              >
-                Remove From Cart
-              </Button>
-            ) : (
-              <Button
-                disabled={!item.stock}
-                onClick={() => {
-                  dispatch({ type: "ADD_TO_CART", payload: item });
-                }}
-              >
-                {!item.stock ? "Out of Stock" : "Add To Cart"}
-              </Button>
-            )}
+            {/* Button for  Product  Add & Remove from Cart */}
+            <ProductAddRemoveButton
+              isInCart={isInCart}
+              stock={item.stock}
+              product={item}
+            />
           </div>
         </Card.Body>
       </Card>
