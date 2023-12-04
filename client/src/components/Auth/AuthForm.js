@@ -64,7 +64,7 @@ const AuthForm = () => {
 
         //get expireIn time and convert to milisec numbers
         let expirationTime = +120 * 1000;
-        login(data.idToken, expirationTime);
+        login(data, expirationTime);
         navigate("/store", { replace: true });
       } else {
         const data = await res.json();

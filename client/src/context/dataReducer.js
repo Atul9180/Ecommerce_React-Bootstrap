@@ -1,4 +1,4 @@
-export const cartReducer = (state, action) => {
+export const reducerFn = (state, action) => {
   switch (action.type) {
     case "SET_LOADING":
       return { ...state, isLoading: action.payload };
@@ -15,21 +15,6 @@ export const cartReducer = (state, action) => {
         products: action.payload,
         error: null,
       };
-
-    case "ADD_TO_CART":
-      return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
-
-    case "REMOVE_FROM_CART":
-      return {
-        ...state,
-        cart: state.cart.filter((prd) => prd.id !== action.payload.id),
-      };
-
-    case "INCREMENT_CART_ITEM":
-      return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
-
-    case "DECREMENT_CART_ITEM":
-      return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
 
     default:
       return state;

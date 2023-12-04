@@ -1,7 +1,8 @@
-import { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { Row, Col, Image } from "react-bootstrap";
 import { CartState } from "../../context/Context";
+import useCartContext from "../../context/CartContext";
 import ReusableSpinner from "../UI/ReusableSpinner";
 import Rating from "./Rating";
 import { fetchData } from "../../firebase/firebaseFunctions";
@@ -14,8 +15,9 @@ const ProductDetails = () => {
   const productId = Number(id);
 
   const {
-    state: { products, cart },
+    state: { products },
   } = CartState();
+  const { cart } = useCartContext();
 
   const isInCart = cart.some((item) => item.id === productId);
 

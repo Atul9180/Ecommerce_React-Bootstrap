@@ -1,14 +1,25 @@
 import "./Cart.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { AiFillDelete } from "react-icons/ai";
-import { CartState } from "../../context/Context";
 import { Button, Row, Col } from "react-bootstrap";
+import useCartContext from "../../context/CartContext";
 
 const Cart = () => {
-  const {
-    state: { cart },
-    dispatch,
-  } = CartState();
+  const token = localStorage.getItem("idToken");
+  const { cart, removeFromCart } = useCartContext();
+
+  const [total, setTotal] = useState();
+
+  useEffect(() => {
+    if (token) {
+      setTotal(
+        cart.reduce((acc, curr) => acc + Number(curr.price) * curr.quantity, 0)
+      );
+    } else {
+      setTotal(0);
+      localStorage.setItem("cart", []);
+    }
+  }, [cart, token]);
 
   return (
     <>
@@ -36,19 +47,19 @@ const Cart = () => {
             <Row className="cartItemRow text-center mb-2" key={item.id}>
               <Col className=" text-center">
                 <img
-                  src={item.images[0]}
+                  src={item.image}
                   className="cartItemImg"
                   alt={item.title}
                 />
               </Col>
               <Col>{item.title}</Col>
-              <Col>[x {item.qty}]</Col>
-              <Col>Rs {item.price * item.qty}</Col>
+              <Col>[x {item.quantity}]</Col>
+              <Col>Rs {item.price * item.quantity}</Col>
               <Col>
                 <AiFillDelete
                   className="iconDelete"
                   onClick={() => {
-                    dispatch({ type: "REMOVE_FROM_CART", payload: item });
+                    removeFromCart(item.id);
                   }}
                 />
               </Col>
@@ -58,10 +69,17 @@ const Cart = () => {
       </div>
 
       <div className="text-end mt-4">
-        <h5>Total Price: Rs. {"0"} </h5>
+        <span className="title">Subtotal ({cart.length}) items</span>
+        <span style={{ fontWeight: 700, fontSize: 20 }}>Total: ₹ {total}</span>
       </div>
 
-      <Button className="proceedToPayBtn text-end">Proceed To Payment</Button>
+      <Button
+        type="button"
+        disabled={cart.length === 0}
+        className="proceedToPayBtn text-end"
+      >
+        Proceed To Payment
+      </Button>
     </>
   );
 };

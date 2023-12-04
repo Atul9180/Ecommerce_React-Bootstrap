@@ -1,15 +1,9 @@
-import React, {
-  useEffect,
-  createContext,
-  useState,
-  useContext,
-  useCallback,
-} from "react";
-
+import React, { useEffect, createContext } from "react";
+import { useState, useContext, useCallback } from "react";
 export const AuthContext = createContext({
   token: null,
   isLoggedIn: false,
-  login: (idToken, expiresIn) => {},
+  login: (data, expiresIn) => {},
   logout: () => {},
   autoLogOut: () => {},
 });
@@ -22,17 +16,21 @@ export const AuthContextProvider = ({ children }) => {
   const userIsLoggedIn = !!token;
 
   //login--------
-  const loginHandler = (idToken, expiresIn) => {
-    localStorage.setItem("idToken", idToken);
+  const loginHandler = (data, expiresIn) => {
+    console.log({ data });
+    const { localId, email } = data;
+    localStorage.setItem("idToken", localId);
+    localStorage.setItem("email", email);
     localStorage.setItem(
       "expiresIn",
       (new Date().getTime() + expiresIn).toString()
     );
-    setToken(idToken);
+    setToken(localId);
   };
 
   //logout------
   const logoutHandler = useCallback(() => {
+    localStorage.removeItem("email");
     localStorage.removeItem("idToken");
     localStorage.removeItem("expiresIn");
     setToken(null);

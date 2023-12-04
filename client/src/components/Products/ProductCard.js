@@ -3,16 +3,14 @@ import React from "react";
 import "./ProductCard.css";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
-import { CartState } from "../../context/Context";
+import useCartContext from "../../context/CartContext";
 import { useRequireAuth } from "../../hooks/useRequireAuth";
 import ProductAddRemoveButton from "../UI/ProductAddRemoveButton";
 
 const ProductCard = ({ item }) => {
   useRequireAuth();
 
-  const {
-    state: { cart },
-  } = CartState();
+  const { cart } = useCartContext();
 
   const isInCart = cart.some((p) => p.id === item.id);
 

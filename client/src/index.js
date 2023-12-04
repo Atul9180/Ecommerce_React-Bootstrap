@@ -6,13 +6,16 @@ import "./index.css";
 import App from "./App";
 import { DataContextProvider } from "./context/Context";
 import { AuthContextProvider } from "./context/Auth/AuthContext.js";
+import { CartProvider } from "./context/CartContext.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <DataContextProvider>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </DataContextProvider>
     </AuthContextProvider>
   </React.StrictMode>

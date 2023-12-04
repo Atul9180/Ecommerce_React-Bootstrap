@@ -1,15 +1,16 @@
+import React from "react";
 import { Button } from "react-bootstrap";
-import { CartState } from "../../context/Context";
+import useCartContext from "../../context/CartContext";
 
 const ProductAddRemoveButton = ({ isInCart, stock, product }) => {
-  const { dispatch } = CartState();
+  const { addToCart, removeFromCart } = useCartContext();
 
   const handleCartAction = () => {
     if (isInCart) {
-      dispatch({ type: "REMOVE_FROM_CART", payload: product });
+      removeFromCart(product.id);
     } else {
       if (stock) {
-        dispatch({ type: "ADD_TO_CART", payload: product });
+        addToCart(product);
       }
     }
   };
