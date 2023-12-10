@@ -7,10 +7,13 @@ import React, {
   useCallback,
 } from "react";
 import { reducerFn } from "./dataReducer";
+import { AuthContextData } from "./Auth/AuthContext";
 
 const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
+  const { isLoggedIn } = AuthContextData();
+
   const [state, dispatch] = useReducer(reducerFn, {
     products: [],
     isLoading: true,
@@ -51,8 +54,8 @@ export const DataContextProvider = ({ children }) => {
   }, [state.retryIntervalId, dispatch]);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    isLoggedIn && fetchData();
+  }, [fetchData, isLoggedIn]);
 
   const contextValue = useMemo(
     () => ({ state, dispatch, cancelRetry }),

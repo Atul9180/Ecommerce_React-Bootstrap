@@ -1,13 +1,14 @@
 import "./Header.css";
-import React from "react";
+import React, { useMemo } from "react";
 import { Nav, Badge, Dropdown, DropdownButton } from "react-bootstrap";
 import { MdShoppingCart } from "react-icons/md";
 import useCartContext from "../../context/CartContext";
 import Cart from "../Cart/Cart";
-// import { AuthContext } from "../../context/Auth/AuthContext";
 
 const HeaderCartButton = () => {
   const { cart } = useCartContext();
+
+  const cartItemsCount = useMemo(() => cart.length || 0, [cart]);
 
   return (
     <Nav>
@@ -18,7 +19,7 @@ const HeaderCartButton = () => {
           <>
             <MdShoppingCart className="cart" />
             <Badge pill bg="info" className="cartBadge">
-              {cart.length || 0}
+              {cartItemsCount}
             </Badge>
           </>
         }

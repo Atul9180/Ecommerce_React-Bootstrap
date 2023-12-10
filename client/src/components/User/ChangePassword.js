@@ -7,9 +7,8 @@ import { useRequireAuth } from "../../hooks/useRequireAuth";
 const ChangePassword = () => {
   useRequireAuth();
 
-  const {
-    user: { idToken },
-  } = AuthContextData();
+  const { idToken } = AuthContextData();
+  const accesstkn = localStorage.getItem("token") || idToken;
 
   const newPasswordInputRef = useRef(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -25,7 +24,7 @@ const ChangePassword = () => {
         {
           method: "POST",
           body: JSON.stringify({
-            idToken: idToken,
+            idToken: accesstkn,
             password: enteredPassword,
             returnSecureToken: true,
           }),

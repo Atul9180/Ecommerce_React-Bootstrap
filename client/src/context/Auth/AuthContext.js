@@ -3,6 +3,7 @@ import { useState, useContext, useCallback } from "react";
 
 export const AuthContext = createContext({
   token: null,
+  user: null,
   isLoggedIn: false,
   login: (data, expiresIn) => {},
   logout: () => {},
@@ -20,9 +21,10 @@ export const AuthContextProvider = ({ children }) => {
   //login--------
   const loginHandler = (data, expiresIn) => {
     console.log({ data });
-    const { localId, email } = data;
+    const { localId, email, idToken } = data;
     localStorage.setItem("idToken", localId);
     localStorage.setItem("email", email);
+    localStorage.setItem("token", idToken);
     localStorage.setItem(
       "expiresIn",
       (new Date().getTime() + expiresIn).toString()
@@ -37,7 +39,6 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.removeItem("idToken");
     localStorage.removeItem("expiresIn");
     setToken(null);
-    setUser(null);
   }, []);
 
   //Calculate remaining time for token expiration---

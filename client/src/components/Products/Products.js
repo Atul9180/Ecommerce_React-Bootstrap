@@ -1,8 +1,8 @@
+import React, { useEffect, useMemo, useCallback } from "react";
 import ProductCard from "./ProductCard";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import ReusableSpinner from "../UI/ReusableSpinner";
 import { CartState } from "../../context/Context";
-import React, { useEffect, useMemo, useCallback } from "react";
 
 const Products = () => {
   const {
