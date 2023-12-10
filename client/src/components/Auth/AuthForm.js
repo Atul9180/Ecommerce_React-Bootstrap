@@ -101,8 +101,8 @@ const AuthForm = () => {
 
   //fill dummy login details
   const fillFormWithCredentials = () => {
-    emailRef.current.value = "atul2@gmail.com";
-    passwordRef.current.value = "atul88";
+    emailRef.current.value = `${process.env.REACT_APP_DUMMY_USER_LOGIN_EMAIL}`;
+    passwordRef.current.value = `${process.env.REACT_APP_DUMMY_LOGIN_PASSWORD}`;
   };
 
   return (
