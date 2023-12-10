@@ -2,9 +2,15 @@ import classes from "./ChangePassword.module.css";
 import React, { useRef, useState } from "react";
 import { AuthContextData } from "../../context/Auth/AuthContext";
 import Message from "../UI/Message";
+import { useRequireAuth } from "../../hooks/useRequireAuth";
 
 const ChangePassword = () => {
-  const { token } = AuthContextData();
+  useRequireAuth();
+
+  const {
+    user: { idToken },
+  } = AuthContextData();
+
   const newPasswordInputRef = useRef(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
@@ -19,7 +25,7 @@ const ChangePassword = () => {
         {
           method: "POST",
           body: JSON.stringify({
-            idToken: token,
+            idToken: idToken,
             password: enteredPassword,
             returnSecureToken: true,
           }),

@@ -1,5 +1,6 @@
 import React, { useEffect, createContext } from "react";
 import { useState, useContext, useCallback } from "react";
+
 export const AuthContext = createContext({
   token: null,
   isLoggedIn: false,
@@ -11,6 +12,7 @@ export const AuthContext = createContext({
 export const AuthContextProvider = ({ children }) => {
   const initialToken = localStorage.getItem("idToken");
   const [token, setToken] = useState(initialToken || null);
+  const [user, setUser] = useState(null);
 
   //convert truthly/falsy value to boolean: denotes falsy if empty convert it to boolean
   const userIsLoggedIn = !!token;
@@ -26,6 +28,7 @@ export const AuthContextProvider = ({ children }) => {
       (new Date().getTime() + expiresIn).toString()
     );
     setToken(localId);
+    setUser(data);
   };
 
   //logout------
@@ -34,6 +37,7 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.removeItem("idToken");
     localStorage.removeItem("expiresIn");
     setToken(null);
+    setUser(null);
   }, []);
 
   //Calculate remaining time for token expiration---
@@ -66,6 +70,7 @@ export const AuthContextProvider = ({ children }) => {
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
+    user: user,
   };
 
   return (

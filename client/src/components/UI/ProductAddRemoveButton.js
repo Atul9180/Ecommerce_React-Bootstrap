@@ -7,7 +7,7 @@ const ProductAddRemoveButton = ({ isInCart, stock, product }) => {
 
   const handleCartAction = () => {
     if (isInCart) {
-      removeFromCart(product.id);
+      removeFromCart(product.refId);
     } else {
       if (stock) {
         addToCart(product);

@@ -39,7 +39,8 @@ const About = () => {
           md={12}
           className="mt-md-3 mt-sm-3  order-first order-md-last"
         >
-          <div className="about-image d-none d-sm-block">
+          {/* <div className="about-image d-none d-sm-block"> */}
+          <div className="about-image  d-sm-block">
             <Image
               src={aboutImg1}
               className="about-img1 d-block  "

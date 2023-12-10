@@ -13,6 +13,7 @@ import { AuthContextData } from "../context/Auth/AuthContext";
 
 const AppRouter = () => {
   const { isLoggedIn } = AuthContextData();
+
   return (
     <Routes>
       <Route path="/" exact element={<Home />} />

@@ -6,7 +6,8 @@ import banner2 from "../../assets/banner2.jpg";
 
 const Carousal = () => {
   return (
-    <Carousel className="d-none d-md-block ">
+    // <Carousel className="d-none d-md-block ">
+    <Carousel className="d-md-block ">
       <Carousel.Item className="carousel-item" style={{ height: "45vh" }}>
         <img className="d-block w-100" src={banner1} alt="First slide" />
       </Carousel.Item>

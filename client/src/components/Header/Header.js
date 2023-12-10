@@ -5,8 +5,11 @@ import Container from "react-bootstrap/Container";
 import HeaderCartButton from "./HeaderCartButton";
 import HeaderNavLinks from "./HeaderNavLinks";
 import { FcShop } from "react-icons/fc";
+import { AuthContextData } from "../../context/Auth/AuthContext";
 
 const Header = () => {
+  const { isLoggedIn } = AuthContextData();
+
   return (
     <Navbar
       bg="primary"
@@ -31,7 +34,7 @@ const Header = () => {
           <HeaderNavLinks />
 
           {/* Cart Header Button Component */}
-          <HeaderCartButton />
+          {isLoggedIn && <HeaderCartButton />}
         </Navbar.Collapse>
       </Container>
     </Navbar>

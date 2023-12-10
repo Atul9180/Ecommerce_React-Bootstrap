@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import classes from "./AuthForm.module.css";
 import { AuthContextData } from "../../context/Auth/AuthContext";
 import Message from "../UI/Message";
+import { addUserToFirestore } from "../../firebase/firebaseFunctions";
 
 const AuthForm = () => {
   const navigate = useNavigate();
@@ -57,10 +58,21 @@ const AuthForm = () => {
 
       if (res?.ok) {
         const data = await res.json();
-        //console.log("firebase response: ", { data });
+        const { localId, email } = data;
+
+        console.log("firebase response: ", { data });
         setSuccessMsg(doLogin ? "Login Successful" : "Signup Successful");
         setErrorMsg(null);
         emptyFormInputCredentials();
+
+        // Store user details in Firestore upon signup
+
+        const userData = {
+          email,
+          localId,
+        };
+
+        addUserToFirestore(userData); // Store user in Firestore
 
         //get expireIn time and convert to milisec numbers
         let expirationTime = +120 * 1000;

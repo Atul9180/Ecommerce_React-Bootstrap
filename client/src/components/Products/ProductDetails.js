@@ -19,7 +19,9 @@ const ProductDetails = () => {
   } = CartState();
   const { cart } = useCartContext();
 
-  const isInCart = cart.some((item) => item.id === productId);
+  //const isInCart = cart.some((item) => item.id === productId);
+  const cartItem = cart.find((cartItem) => cartItem.id === productId);
+  const isInCart = !!cartItem;
 
   const productFromContext = products.find((item) => item.id === productId);
 
@@ -83,7 +85,7 @@ const ProductDetails = () => {
           <ProductAddRemoveButton
             isInCart={isInCart}
             stock={stock}
-            product={product}
+            product={cartItem || product}
           />
         </Col>
       </Row>

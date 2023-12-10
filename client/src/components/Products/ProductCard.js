@@ -12,7 +12,8 @@ const ProductCard = ({ item }) => {
 
   const { cart } = useCartContext();
 
-  const isInCart = cart.some((p) => p.id === item.id);
+  const cartItem = cart.find((cartItem) => cartItem.id === item.id);
+  const isInCart = !!cartItem;
 
   return (
     <div className="productContainer">
@@ -55,7 +56,7 @@ const ProductCard = ({ item }) => {
             <ProductAddRemoveButton
               isInCart={isInCart}
               stock={item.stock}
-              product={item}
+              product={cartItem || item}
             />
           </div>
         </Card.Body>

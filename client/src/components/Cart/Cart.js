@@ -1,12 +1,16 @@
-import "./Cart.css";
 import React, { useState, useEffect } from "react";
+
 import { AiFillDelete } from "react-icons/ai";
 import { Button, Row, Col } from "react-bootstrap";
+
 import useCartContext from "../../context/CartContext";
+
+import "./Cart.css";
 
 const Cart = () => {
   const token = localStorage.getItem("idToken");
   const { cart, removeFromCart } = useCartContext();
+  console.log({ cart });
 
   const [total, setTotal] = useState();
 
@@ -59,7 +63,7 @@ const Cart = () => {
                 <AiFillDelete
                   className="iconDelete"
                   onClick={() => {
-                    removeFromCart(item.id);
+                    removeFromCart(item.refId);
                   }}
                 />
               </Col>
